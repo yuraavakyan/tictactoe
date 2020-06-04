@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../App.css';
 
 const Square = (props) => {
     return (
-        <div className="square" id={props.id} onClick={props.clickHandler}>
+        <div className="square" id={props.id} onClick={props.onClick}>
             {props.value}
         </div>
     );
