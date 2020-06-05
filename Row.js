@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import '../App.css';
 import Square from '../Square/square-comp';
 
-const arrX = [{ value: 'X' }];
-const arrO = [{ value: 'O' }];
+const arrX = [{ value: 'X' }]; //X moves
+const arrO = [{ value: 'O' }]; //O moves
 let count = 0;
 
 const Row = (props) => {
@@ -16,12 +16,11 @@ const Row = (props) => {
         const cells = state.slice();
 
 
-        if (cells[i] === null) {
-            if (count % 2 === 0) {
+        if (cells[i] === null) { //checking if cell is empty or not
+            if (count % 2 === 0) { //checking who's turn is it
                 cells[i] = 'X';
-                arrX.push({ parent: parent, index: i });
+                arrX.push({ parent: parent, index: i }); //stroing moves as rows and index pairs
                 checkWin(arrX);
-                //console.log(arrX);
             } else {
                 cells[i] = 'O';
                 arrO.push({ parent: parent, index: i });
@@ -38,7 +37,7 @@ const Row = (props) => {
     const checkWin = (array) => {
         let count = 0;
 
-        const horizontalCheck = () => {
+        const horizontalCheck = () => { //checks whetere there is a winning compination in horizontal state
             const arrObjects = [];
             const arrParents = [];
 
@@ -127,8 +126,9 @@ const Row = (props) => {
                             if (Math.abs(arrParents[i] - arrParents[i + 1]) === 1 && Math.abs(arrIndexes[i] - arrIndexes[i + 1]) === 1) {
                                 count++;
                                 //  console.log(count);
-                                if (count === 20) return true;
+                                if (count === 20) return true; //There was a little bug that I couldn't manage, that's why is 20
                             }
+                            //removing elements that are not coming in a row
                             else if (Math.abs(arrParents[i] - arrParents[i + 1]) === 1 || Math.abs(arrIndexes[i] - arrIndexes[i + 1]) === 1) {
                                 arrParents.splice(i, 1);
                                 arrIndexes.splice(i, 1);
