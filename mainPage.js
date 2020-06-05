@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import Board from './Board/board-comp';
-
+//
 const Form = () => {
 
     const [size, setSize] = useState({ columns: 0, rows: 0 });
